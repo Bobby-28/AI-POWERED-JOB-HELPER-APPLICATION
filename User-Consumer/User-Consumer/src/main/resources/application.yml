@@ -1,0 +1,33 @@
+server:
+  port: 6061
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/application_tracker
+    username: postgres
+    password: aditya(2003)
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      auto-offset-reset: earliest
+      group-id: "user-consumer-group"
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: com.user_consumer.deserializer.UserDeserializer
+      properties:
+        spring.json.trusted.packages: "*"
+        spring.json.type.mapping: user:com.user_consumer.entities.User
+
+#eureka:
+#  instance:
+#    prefer-ip-address: true
+#  client:
+#    fetch-registry: true
+#    register-with-eureka: true
+#    service-url:
+#      defaultZone: http://localhost:8761/eureka

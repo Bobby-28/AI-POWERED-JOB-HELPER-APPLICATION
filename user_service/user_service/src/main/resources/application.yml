@@ -1,0 +1,22 @@
+server:
+  port: 6060
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/application_tracker
+    username: postgres
+    password: aditya(2003)
+
+
+  kafka:
+    bootstrap-servers: localhost:9092
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: user_service.serializer.UserSerializer
+      properties:
+        spring.json.type.mapping: "user:user_service.model.User"
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
